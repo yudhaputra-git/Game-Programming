@@ -5,20 +5,21 @@ using UnityEngine;
 public class CollisionControl : MonoBehaviour {
 
 	[SerializeField]
-	private GameObject finishpanel;
-	// Use this for initialization
+	private GameObject finishpanel, crosshair;
+	
 	void Start () {
 		finishpanel.SetActive(false);
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
+		if (finishpanel.activeSelf)
+		{
+			crosshair.transform.position = Input.mousePosition;
+		}
 	}
 	void OnCollisionEnter(Collision Collection){
-		if(Collection.gameObject.name == "Player"){ //jika player menyentuh objek yang memiliki collider (berimbuhan script) ini
+		if(Collection.gameObject.name == "Player"){
 			finishpanel.SetActive(true);
-			Cursor.visible = true;
 		}
 	}
 }

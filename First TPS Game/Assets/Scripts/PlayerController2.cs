@@ -8,12 +8,9 @@ public class PlayerController2 : MonoBehaviour {
 	[SerializeField]
 	private float speed = 5f;
 	private Vector3 jump = Vector3.zero;
-
-	[SerializeField]
 	private float sensitivity = 3f;
 	private Rigidbody rb;
 	private PlayerMotor motor;
-	
 
 	void Start(){
 		motor = GetComponent<PlayerMotor>();

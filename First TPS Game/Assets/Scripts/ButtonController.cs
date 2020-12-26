@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
-	public GameObject target;
 	private int life = 100;
 	// Use this for initialization
 	void Start () {

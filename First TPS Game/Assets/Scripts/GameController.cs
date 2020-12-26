@@ -10,8 +10,9 @@ public class GameController : MonoBehaviour {
 	private Text lifetext, scoretext, highscoretext;
 
 	[SerializeField]
-	private GameObject gameoverpanel;
+	private GameObject gameoverpanel, crosshair;
 	private float timeplayed;
+
 	// Use this for initialization
 	void Start () {
 		gameoverpanel.SetActive(false);
@@ -24,16 +25,31 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		life = PlayerPrefs.GetInt("MyLife");
 		score = PlayerPrefs.GetInt("Score");
+		Score();
+		Display();
 		if(life <= 0){
+			//crosshair.transform.position = Input.mousePosition;
 			gameoverpanel.SetActive(true);
-			Cursor.visible = true;
 		}
+	}
+
+	void Score()
+	{
 		timeplayed += Time.deltaTime;
 		score -= Mathf.RoundToInt(timeplayed);
-		if(score > highscore){
-				highscore = score;
-				PlayerPrefs.SetInt("Highscore", highscore);
+		if (score > highscore)
+		{
+			highscore = score;
+			PlayerPrefs.SetInt("Highscore", highscore);
 		}
+		if (score <= 0)
+		{
+			score = 0;
+		}
+	}
+
+	void Display()
+	{
 		highscore = PlayerPrefs.GetInt("Highscore");
 		highscoretext.text = "High Score : " + highscore.ToString();
 		scoretext.text = "Score : " + score.ToString();
